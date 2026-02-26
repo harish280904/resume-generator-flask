@@ -32,4 +32,4 @@ Database: MySQL
 
 ---
 
-Developed by Harish
+Developed by Harish Addagatla 
