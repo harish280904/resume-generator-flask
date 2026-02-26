@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professional Resume</title>
+
+    <!-- Added for PDF CSS support -->
+    <base href="{{ request.url_root }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/professional.css') }}">
+</head>
+<body>
+
+<div class="resume-wrapper">
+
+    <!-- HEADER -->
+    <div class="top-header">
+        <div>
+            <h1>{{ personal.full_name }}</h1>
+            <p><strong>{{ personal.job_title }}</strong></p>
+            <p>{{ personal.email }} | {{ personal.phone }}</p>
+        </div>
+    </div>
+
+    <div class="grid-layout">
+
+        <!-- LEFT COLUMN -->
+        <div>
+
+            {% if personal.objective %}
+            <div class="section green">
+                <div class="section-title">Profile</div>
+                <p>{{ personal.objective }}</p>
+            </div>
+            {% endif %}
+
+            {% if experience %}
+            <div class="section green">
+                <div class="section-title">Work Experience</div>
+                {% for exp in experience %}
+                <div class="item">
+                    <strong>{{ exp.job_title }}</strong><br>
+                    {{ exp.company }} <br>
+                    <span class="small">{{ exp.duration }}</span>
+                    <p>{{ exp.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if projects %}
+            <div class="section green">
+                <div class="section-title">Projects</div>
+                {% for proj in projects %}
+                <div class="item">
+                    <strong>{{ proj.project_title }}</strong>
+                    {% if proj.technologies_used %}
+                        ({{ proj.technologies_used }})
+                    {% endif %}
+                    <p>{{ proj.description }}</p>
+                    {% if proj.github_link %}
+                    <a href="{{ proj.github_link }}" target="_blank">
+                        View on GitHub
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+
+            {% if education %}
+            <div class="section gray">
+                <div class="section-title dark">Education</div>
+                {% for edu in education %}
+                <div class="item">
+                    <strong>{{ edu.level }}</strong><br>
+                    {{ edu.institution }} <br>
+                    <span class="small">
+                        {{ edu.year_of_passing }}
+                        {% if edu.percentage %} | {{ edu.percentage }}{% endif %}
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if skills %}
+            <div class="section gray">
+                <div class="section-title dark">Skills</div>
+                <ul>
+                {% for skill in skills %}
+                    <li>{{ skill.skill_name }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Download Button (Only Added This) -->
+{% if not pdf_mode %}
+<div style="margin:30px;">
+    <a href="/download/{{ session['resume_id'] }}"
+       style="padding:10px 20px;
+              background:#000;
+              color:#fff;
+              text-decoration:none;
+              border-radius:5px;">
+       Download PDF
+    </a>
+</div>
+{% endif %}</body>
+</html>

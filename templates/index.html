@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Generator</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8fafc;
+            color: #1f2937;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 60px;
+            background: linear-gradient(90deg, #2563eb, #06b6d4);
+            color: white;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .admin-btn {
+            background: white;
+            color: #2563eb !important;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6, #06b6d4);
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #2563eb;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Features */
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 80px 60px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            width: 300px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #f1f5f9;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">ResumeGenerator</div>
+
+    <div class="nav-links">
+        {% if session.get('user_id') %}
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Sign Up</a>
+            <a href="/admin-login" class="admin-btn">Admin</a>
+        {% endif %}
+    </div>
+</nav>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Create Your Perfect Resume</h1>
+        <p>Build professional resumes in minutes with modern, ATS-friendly templates.</p>
+        <a href="/signup" class="btn-primary hero-btn">Start Building Free</a>
+    </div>
+</section>
+
+<section class="features">
+    <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Professional Templates</h3>
+        <p>Modern and ATS-friendly resume designs crafted for success.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Live Preview</h3>
+        <p>See real-time updates as you build your resume instantly.</p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-icon">⬇️</div>
+        <h3>Instant PDF Export</h3>
+        <p>Download high-quality resumes in one click.</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 ResumeGenerator. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

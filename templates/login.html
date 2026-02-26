@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Resume Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        /* Background */
+        .auth-body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #3b82f6, #06b6d4);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Glass Card */
+        .auth-card {
+            width: 380px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .auth-card h2 {
+            margin-bottom: 25px;
+            color: #fff;
+            font-size: 26px;
+        }
+
+        /* Inputs */
+        .auth-card input {
+            width: 100%;
+            padding: 12px 14px;
+            margin-bottom: 18px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+            background: rgba(255,255,255,0.9);
+            transition: 0.3s;
+        }
+
+        .auth-card input:focus {
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.4);
+            transform: scale(1.02);
+        }
+
+        /* Button */
+        .btn-primary {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(90deg, #2563eb, #1e40af);
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Links */
+        .auth-card p {
+            margin-top: 15px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .auth-card a {
+            color: #fff;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        /* Navbar (minimal glass look) */
+        .navbar {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .navbar a {
+            margin-left: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animation */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="auth-body">
+
+<nav class="navbar">
+    <div class="logo">ResumeGenerator</div>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="auth-card">
+
+    <h2>Login</h2>
+
+    {% if error %}
+        <div class="error-box">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="/login">
+
+        <input type="email" name="email" placeholder="Enter Email" required>
+
+        <input type="password" name="password" placeholder="Enter Password" required>
+
+        <button type="submit" class="btn-primary full-btn">
+            Login
+        </button>
+
+    </form>
+
+    <p>
+        Don't have an account?
+        <a href="/signup">Sign Up</a>
+    </p>
+
+</div>
+
+</body>
+</html>

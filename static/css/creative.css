@@ -1,0 +1,126 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f4f4;
+}
+
+.creative-wrapper {
+    width: 1100px;
+    margin: 40px auto;
+    background: white;
+    padding: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative circles */
+.creative-wrapper::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: #f8a5c2;
+    border-radius: 50%;
+    top: -100px;
+    right: -100px;
+    opacity: 0.3;
+}
+
+.creative-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: #81d4fa;
+    border-radius: 50%;
+    bottom: -80px;
+    left: -80px;
+    opacity: 0.3;
+}
+
+.creative-header h1 {
+    font-size: 42px;
+    margin: 0;
+}
+
+.creative-header p {
+    margin-top: 10px;
+    color: #555;
+}
+
+.creative-grid {
+    display: block;
+    margin-top: 40px;
+}
+
+.section {
+    margin-bottom: 35px;
+}
+
+.section-bar {
+    background: #7fb8c9;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.item {
+    margin-bottom: 15px;
+}
+
+.small {
+    font-size: 13px;
+    color: #666;
+}
+
+/* Skill Progress */
+.skill-row {
+    margin-bottom: 15px;
+}
+
+.progress {
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.progress-fill {
+    width: 70%;
+    height: 8px;
+    background: #f48fb1;
+    border-radius: 10px;
+}
+
+a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* DOWNLOAD BUTTON */
+.download-btn {
+    margin: 30px;
+    text-align: center;
+}
+
+.download-button {
+    padding: 10px 20px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* HIDE BUTTON IN PDF */
+@media print {
+    .download-btn {
+        display: none !important;
+    }
+}

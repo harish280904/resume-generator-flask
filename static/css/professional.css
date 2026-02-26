@@ -1,0 +1,85 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f3f3;
+}
+
+.resume-wrapper {
+    width: 1100px;
+    margin: 40px auto;
+    background: white;
+    padding: 50px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+.top-header h1 {
+    margin: 0;
+    font-size: 42px;
+}
+
+.top-header p {
+    margin: 6px 0;
+    color: #555;
+}
+
+/* GRID */
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* SECTION CARD */
+.section {
+    padding: 25px;
+    border-radius: 16px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+/* GREEN BLOCK */
+.green {
+    background: #2ecc71;
+    color: white;
+}
+
+/* GREY BLOCK */
+.gray {
+    background: #e8e8e8;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding: 8px 18px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.section-title.dark {
+    background: #ccc;
+}
+
+/* ITEM */
+.item {
+    margin-bottom: 18px;
+}
+
+.small {
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+a {
+    color: white;
+    text-decoration: underline;
+}

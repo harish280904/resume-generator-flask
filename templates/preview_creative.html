@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Creative Resume</title>
+
+    <base href="{{ request.url_root }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/creative.css') }}">
+</head>
+<body>
+
+<div class="creative-wrapper">
+
+    {% if personal %}
+    <div class="creative-header">
+        <h1>{{ personal.full_name }}</h1>
+        <p>
+            {{ personal.job_title }} <br>
+            {{ personal.email }} | {{ personal.phone }}
+        </p>
+    </div>
+    {% endif %}
+
+    <div class="creative-grid">
+
+        <!-- LEFT COLUMN -->
+        <div>
+
+            {% if personal and personal.objective %}
+            <div class="section">
+                <div class="section-bar">Profile</div>
+                <p>{{ personal.objective }}</p>
+            </div>
+            {% endif %}
+
+            {% if experience %}
+            <div class="section">
+                <div class="section-bar">Work Experience</div>
+                {% for exp in experience %}
+                <div class="item">
+                    <strong>{{ exp.job_title }}</strong>
+                    {% if exp.company %} | {{ exp.company }} {% endif %}
+                    <div class="small">{{ exp.duration }}</div>
+                    <p>{{ exp.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if education %}
+            <div class="section">
+                <div class="section-bar">Education</div>
+                {% for edu in education %}
+                <div class="item">
+                    <strong>{{ edu.level }}</strong><br>
+                    {{ edu.institution }}<br>
+                    <span class="small">
+                        {{ edu.year_of_passing }}
+                        {% if edu.percentage %} | {{ edu.percentage }}{% endif %}
+                    </span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+
+            {% if skills %}
+            <div class="section">
+                <div class="section-bar">Skills</div>
+                {% for skill in skills %}
+                <div class="skill-row">
+                    <span>{{ skill.skill_name }}</span>
+                    <div class="progress">
+                        <div class="progress-fill"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if projects %}
+            <div class="section">
+                <div class="section-bar">Projects</div>
+                {% for proj in projects %}
+                <div class="item">
+                    <strong>{{ proj.project_title }}</strong>
+                    {% if proj.technologies_used %}
+                        ({{ proj.technologies_used }})
+                    {% endif %}
+                    <p>{{ proj.description }}</p>
+                    {% if proj.github_link %}
+                    <a href="{{ proj.github_link }}" target="_blank">
+                        View on GitHub
+                    </a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% if not pdf_mode %}
+<div class="download-btn">
+    <a href="/download/{{ session['resume_id'] }}" class="download-button">
+        Download PDF
+    </a>
+</div>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Builder</title>
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<nav class="navbar">
+    <div class="logo">ResumeGenerator</div>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+<body>
+
+<div class="builder-layout">
+
+    <!-- LEFT PROGRESS -->
+    <div class="builder-progress">
+        <ul>
+            <li>1. Contact</li>
+            <li>2. Experience</li>
+            <li>3. Education</li>
+            <li>4. Skills</li>
+            <li>5. Summary</li>
+            <li>6. Finalize</li>
+        </ul>
+    </div>
+
+    <!-- CENTER FORM -->
+    <div class="builder-main">
+
+        {% if section == "contact" %}
+            <h2>Contact Information</h2>
+            <input type="text" placeholder="First Name">
+            <input type="text" placeholder="Last Name">
+            <input type="text" placeholder="City">
+            <input type="email" placeholder="Email">
+        {% endif %}
+
+        {% if section == "experience" %}
+            <h2>Work Experience</h2>
+            <input type="text" placeholder="Job Title">
+            <input type="text" placeholder="Company">
+        {% endif %}
+
+        <div class="nav-buttons">
+            <a href="#" class="secondary-btn">Back</a>
+            <a href="/builder/section/experience" class="primary-btn">Next</a>
+        </div>
+
+    </div>
+
+    <!-- RIGHT LIVE PREVIEW -->
+    <div class="builder-preview">
+        <h3>Live Resume Preview</h3>
+    </div>
+
+</div>
+
+</body>
+</html>

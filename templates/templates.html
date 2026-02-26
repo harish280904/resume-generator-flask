@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Template</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<h2 style="text-align:center;">Choose Your Resume Template</h2>
+
+<div class="template-container">
+
+    <div class="template-card">
+        <img src="{{ url_for('static', filename='template1.png') }}" alt="Template 1">
+        <button onclick="selectTemplate('classic')">Use Classic</button>
+    </div>
+
+    <div class="template-card">
+        <img src="{{ url_for('static', filename='template2.png') }}" alt="Template 2">
+        <button onclick="selectTemplate('modern')">Use Modern</button>
+    </div>
+
+    <div class="template-card">
+        <img src="{{ url_for('static', filename='template3.png') }}" alt="Template 3">
+        <button onclick="selectTemplate('professional')">Use Professional</button>
+    </div>
+
+</div>
+
+<script>
+function selectTemplate(templateName) {
+    window.location.href = "/builder?template=" + templateName;
+}
+</script>
+<nav class="navbar">
+    <div class="logo">ResumeGenerator</div>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+</body>
+</html>

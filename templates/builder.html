@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Builder</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    {% if template == "classic" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/classic.css') }}">
+    {% elif template == "modern" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/modern.css') }}">
+    {% elif template == "professional" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/professional.css') }}">
+    {% elif template == "minimal" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/minimal.css') }}">
+    {% elif template == "creative" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/creative.css') }}">
+    {% elif template == "ats" %}
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/ats.css') }}">
+    {% endif %}
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">ResumeGenerator</div>
+    <div>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="builder-wrapper {{ template }}">
+
+    <!-- LEFT MENU -->
+    <div class="steps">
+        <a href="/builder/personal?template={{ template }}" class="{% if step=='personal' %}active{% endif %}">Personal</a>
+        <a href="/builder/education?template={{ template }}" class="{% if step=='education' %}active{% endif %}">Education</a>
+        <a href="/builder/experience?template={{ template }}" class="{% if step=='experience' %}active{% endif %}">Experience</a>
+        <a href="/builder/projects?template={{ template }}" class="{% if step=='projects' %}active{% endif %}">Projects</a>
+        <a href="/builder/skills?template={{ template }}" class="{% if step=='skills' %}active{% endif %}">Skills</a>
+        <a href="/builder/review?template={{ template }}" class="{% if step=='review' %}active{% endif %}">Review</a>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-area">
+        <form method="POST" action="/save-resume">
+
+        <!-- HIDDEN RESUME ID -->
+        <input type="hidden" id="resume_id" value="{{ session.get('resume_id', 0) }}">
+
+        <!-- PERSONAL -->
+        {% if step == "personal" %}
+            <h2>Personal Information</h2>
+
+            <input type="text" name="full_name" placeholder="Full Name">
+            <input type="text" name="job_title" placeholder="Job Title">
+            <input type="email" name="email" placeholder="Email">
+            <input type="text" name="phone" placeholder="Phone">
+
+            <div style="margin:15px 0;">
+                <select id="experience_level">
+                    <option value="Fresher">Fresher</option>
+                    <option value="1 Year Experience">1 Year Experience</option>
+                    <option value="2+ Years Experience">2+ Years Experience</option>
+                    <option value="5+ Years Experience">5+ Years Experience</option>
+                </select>
+
+                <input type="text"
+                       id="ai_skills"
+                       placeholder="Skills for AI (Python, Flask, SQL)"
+                       style="margin-top:10px;">
+
+                <button type="button"
+                        onclick="generateAI()"
+                        class="btn"
+                        style="margin-top:10px;">
+                    Generate AI Summary
+                </button>
+            </div>
+
+            <textarea id="objective"
+                      name="summary"
+                      placeholder="Professional Summary"></textarea>
+        {% endif %}
+
+        <!-- EDUCATION -->
+        {% if step == "education" %}
+            <h2>Education</h2>
+
+            <div id="education-container">
+                <div class="education-block">
+                    <input type="text" name="degree_1" placeholder="Degree">
+                    <input type="text" name="university_1" placeholder="University">
+                    <input type="text" name="year_1" placeholder="Year">
+                    <input type="text" name="percentage_1" placeholder="Percentage / CGPA">
+                </div>
+            </div>
+
+            <button type="button" class="btn" onclick="addEducation()">
+                + Add Education
+            </button>
+        {% endif %}
+
+        <!-- EXPERIENCE -->
+        {% if step == "experience" %}
+            <h2>Experience</h2>
+            <input type="text" name="job_title_1" placeholder="Job Title">
+            <input type="text" name="company_1" placeholder="Company">
+            <input type="text" name="duration_1" placeholder="Duration">
+            <textarea name="description_1" placeholder="Job Description"></textarea>
+        {% endif %}
+
+        <!-- PROJECTS -->
+        {% if step == "projects" %}
+            <h2>Projects</h2>
+            <input type="text" name="project_title_1" placeholder="Project Title">
+            <input type="text" name="technologies_1" placeholder="Technologies Used">
+            <input type="text" name="github_1" placeholder="GitHub Link">
+            <textarea name="project_description_1" placeholder="Project Description"></textarea>
+        {% endif %}
+
+        <!-- SKILLS -->
+        {% if step == "skills" %}
+            <h2>Skills</h2>
+            <input type="text" name="skills" placeholder="Space separated skills">
+        {% endif %}
+
+        <!-- REVIEW -->
+        {% if step == "review" %}
+            <h2>Review & Save</h2>
+
+            <button type="button"
+                    onclick="analyzeResume()"
+                    class="btn">
+                Check Resume Score
+            </button>
+
+            <div id="scoreBox"
+                 style="margin-top:20px;padding:20px;background:#f4f6f9;border-radius:8px;display:none;">
+                <h3>Resume Score</h3>
+
+                <div style="background:#ddd;height:12px;border-radius:20px;">
+                    <div id="scoreBar"
+                         style="height:12px;width:0%;background:#4CAF50;border-radius:20px;">
+                    </div>
+                </div>
+
+                <p id="scoreText"></p>
+                <ul id="feedbackList"></ul>
+            </div>
+        {% endif %}
+
+        <button type="submit" class="btn">Save & Continue</button>
+
+        </form>
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

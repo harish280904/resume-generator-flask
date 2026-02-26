@@ -1,0 +1,97 @@
+body {
+    font-family: 'Georgia', serif;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 40px;
+}
+
+.classic-container {
+    width: 800px;
+    margin: auto;
+    background: #ffffff;
+    padding: 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 36px;
+    letter-spacing: 1px;
+}
+
+.header h3 {
+    margin: 5px 0;
+    font-weight: normal;
+    color: #444;
+}
+
+.header p {
+    font-size: 14px;
+    color: #666;
+}
+
+hr {
+    margin: 30px 0;
+    border: none;
+    border-top: 2px solid #000;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.item {
+    margin-bottom: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.year {
+    float: right;
+    color: #777;
+    font-size: 13px;
+}
+
+.desc {
+    margin-top: 5px;
+    color: #444;
+}
+
+.tech {
+    font-weight: normal;
+    color: #555;
+}
+
+.github {
+    font-size: 12px;
+    color: green;
+}
+
+.skills {
+    font-size: 14px;
+}
+.github-link {
+    color: #2c3e50;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.github-link:hover {
+    text-decoration: underline;
+}
+@media print {
+    .download-btn {
+        display: none !important;
+    }
+}

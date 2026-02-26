@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATS Resume</title>
+
+    <base href="{{ request.url_root }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/ats.css') }}">
+</head>
+<body>
+
+<div class="ats-container">
+
+    {% if personal %}
+    <h1>{{ personal.full_name }}</h1>
+
+    <p>
+        {% if personal.job_title %}
+            {{ personal.job_title }}<br>
+        {% endif %}
+        {{ personal.email }}
+        {% if personal.phone %} | {{ personal.phone }}{% endif %}
+    </p>
+    <hr>
+    {% endif %}
+
+    {% if personal and personal.objective %}
+    <h2>Professional Summary</h2>
+    <p>{{ personal.objective }}</p>
+    {% endif %}
+
+    {% if experience %}
+    <h2>Work Experience</h2>
+    {% for exp in experience %}
+        <p>
+            <strong>{{ exp.job_title }}</strong>
+            {% if exp.company %} | {{ exp.company }}{% endif %}
+        </p>
+
+        {% if exp.duration %}
+        <p>{{ exp.duration }}</p>
+        {% endif %}
+
+        {% if exp.description %}
+        <p>{{ exp.description }}</p>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if education %}
+    <h2>Education</h2>
+    {% for edu in education %}
+        <p>
+            <strong>{{ edu.level }}</strong>
+            {% if edu.institution %} | {{ edu.institution }}{% endif %}
+        </p>
+
+        <p>
+            {% if edu.year_of_passing %}
+                {{ edu.year_of_passing }}
+            {% endif %}
+            {% if edu.percentage %}
+                | {{ edu.percentage }}
+            {% endif %}
+        </p>
+    {% endfor %}
+    {% endif %}
+
+    {% if projects %}
+    <h2>Projects</h2>
+    {% for proj in projects %}
+        <p>
+            <strong>{{ proj.project_title }}</strong>
+            {% if proj.technologies_used %}
+                ({{ proj.technologies_used }})
+            {% endif %}
+        </p>
+
+        {% if proj.description %}
+        <p>{{ proj.description }}</p>
+        {% endif %}
+
+        {% if proj.github_link %}
+        <p>
+            GitHub:
+            <a href="{{ proj.github_link }}" target="_blank">
+                {{ proj.github_link }}
+            </a>
+        </p>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if skills %}
+    <h2>Skills</h2>
+    <p>
+        {% for skill in skills %}
+            {{ skill.skill_name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </p>
+    {% endif %}
+
+</div>
+
+{% if not pdf_mode %}
+<div class="download-btn">
+    <a href="/download/{{ session['resume_id'] }}" class="download-button">
+        Download PDF
+    </a>
+</div>
+{% endif %}
+
+</body>
+</html>
