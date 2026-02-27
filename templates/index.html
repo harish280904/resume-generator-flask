@@ -141,6 +141,49 @@
                 align-items: center;
             }
         }
+        /* Templates Section */
+.templates {
+    padding: 80px 60px;
+    text-align: center;
+    background: #ffffff;
+}
+
+.template-title {
+    font-size: 32px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+.template-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.template-card {
+    width: 280px;
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.template-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.template-card img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.template-card p {
+    margin-top: 12px;
+    font-weight: 600;
+}
     </style>
 </head>
 <body>
@@ -186,7 +229,42 @@
         <p>Download high-quality resumes in one click.</p>
     </div>
 </section>
+<!-- Templates Preview Section -->
+<section class="templates">
+    <h2 class="template-title">Our Resume Templates</h2>
 
+    <div class="template-grid">
+        <div class="template-card">
+            <img src="{{ url_for('static', filename='images/classic.png') }}" alt="Classic Template">
+            <p>Classic Template</p>
+        </div>
+
+        <div class="template-card">
+            <img src="{{ url_for('static', filename='images/modern.png') }}" alt="Modern Template">
+            <p>Modern Template</p>
+        </div>
+
+        <div class="template-card">
+            <img src="{{ url_for('static', filename='images/professional.png') }}" alt="Professional Template">
+            <p>Professional Template</p>
+        </div>
+
+        <div class="template-card">
+            <img src="{{ url_for('static', filename='images/minimal.png') }}" alt="Minimal Template">
+            <p>Minimal Template</p>
+        </div>
+
+        <div class="template-card">
+            <img src="{{ url_for('static', filename='images/creative.png') }}" alt="Creative Template">
+            <p>Creative Template</p>
+        </div>
+
+        <div class="template-card">
+            <img src="{{ url_for('static', filename='images/ats.png') }}" alt="ATS Template">
+            <p>ATS Friendly Template</p>
+        </div>
+    </div>
+</section>
 <footer>
     <p>© 2026 ResumeGenerator. All rights reserved.</p>
 </footer>
